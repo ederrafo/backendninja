@@ -1,0 +1,20 @@
+spring:
+  aop:
+    auto: true
+    proxy-target-class: false
+  messages:
+    always-use-message-format: false
+    basename: messages
+    cache-duration: -1
+  mvc:
+    dispatch-trace-request: false
+    dispatch-options-request: true
+  couchbase:
+    bucket:
+      name: default
+
+security:
+  oauth2:
+    resource:
+      prefer-token-info: true
+      service-id: resource
