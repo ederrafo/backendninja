@@ -12,9 +12,23 @@ spring:
   couchbase:
     bucket:
       name: default
+# Thymeleaf
+  thymeleaf:
+    cache: true #Spring detecta si una plantilla a sido modificada, para cargarlo o no desde la cache
+    check-template: true # Whether to check that the template exists before rendering it.
+    check-template-location: true
+    servlet:
+      content-type: text/html
+    enabled: true # enable MVC thymeleaf resolution
+    encoding: utf-8 # Template encoding
+
+
+
+
 
 security:
   oauth2:
     resource:
       prefer-token-info: true
       service-id: resource
+
