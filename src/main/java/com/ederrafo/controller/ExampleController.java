@@ -1,5 +1,6 @@
 package com.ederrafo.controller;
 
+import com.ederrafo.model.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ public class ExampleController {
     // Necesitamos un model para pasarle parametros
     public String exampleString(Model model){
         // Si el model viene vacio entonces lo crea
-        model.addAttribute("name", "Eder");
+        model.addAttribute("person", new Person("Eder", 34));
 
         return EXAMPLE_VIEW;
     }
@@ -28,7 +29,7 @@ public class ExampleController {
     @GetMapping("/exampleMAV")
     public ModelAndView exampleMAV(){
         ModelAndView model = new ModelAndView(EXAMPLE_VIEW);
-        model.addObject("name", "Rafo");
+        model.addObject("person",  new Person("Rafo", 34));
 
         return model;
     }
