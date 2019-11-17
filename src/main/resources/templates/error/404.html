@@ -1,3 +1,5 @@
+<!-- Spring look this page if exist the error folder-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +46,7 @@
 
 <div class="jumbotron">
   <div class="container text-center">
-  <img src="../static/imgs/2.png">
+  <img src="../../static/imgs/2.png" th:src="@{/imgs/2.png}">
     <h1>Error...</h1>
     <p>Not every contact sends data to the user, for example the 404 request (page not found) and the requests for pages that are already loaded...</p>
   </div>
