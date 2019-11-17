@@ -19,6 +19,7 @@ public class PersonController {
     {
         // le pasamos un objecto vacio
         model.addAttribute("person", new Person());
+        int i = 90/0;
         return "person-add";
     }
 
