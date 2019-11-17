@@ -1,3 +1,9 @@
+server:
+  error:
+    whitelabel:
+      enabled: false # This directive is for show page 404 of apache tomcat
+
+
 spring:
   aop:
     auto: true
@@ -21,6 +27,8 @@ spring:
       content-type: text/html
     enabled: true # enable MVC thymeleaf resolution
     encoding: utf-8 # Template encoding
+
+
 
 
 
