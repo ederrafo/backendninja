@@ -1,6 +1,9 @@
 package com.ederrafo.controller;
 
+import com.ederrafo.component.LogComponent;
 import com.ederrafo.model.Person;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +19,6 @@ import java.util.List;
 public class ExampleController {
 
     public static final String EXAMPLE_VIEW = "example";
-    public static final String TEMPLATE_PEOPLES = "peoples";
 
     // Primera forma
     // @RequestMapping(value = "/exampleString", method = RequestMethod.GET)
@@ -39,29 +41,4 @@ public class ExampleController {
         return model;
     }
 
-    @GetMapping("/peoples")
-    public ModelAndView peoples(){
-        ModelAndView model = new ModelAndView(TEMPLATE_PEOPLES);
-        model.addObject("peoples",  getPeoples());
-
-        String nameofCurrMethod = new Throwable()
-                .getStackTrace()[0]
-                .getMethodName();
-
-        System.out.println("Name of current method: "
-                + nameofCurrMethod);
-
-        return model;
-    }
-
-    private List<Person> getPeoples(){
-        List<Person> peoples = new ArrayList<>();
-        peoples.add(new Person("Eder", 34));
-        peoples.add(new Person("Rafo", 33));
-        peoples.add(new Person("Oliver", 43));
-        peoples.add(new Person("Ana", 24));
-
-        return peoples;
-
-    }
 }
