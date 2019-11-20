@@ -2,6 +2,7 @@ package com.ederrafo.controller;
 
 import com.ederrafo.component.LogComponent;
 import com.ederrafo.model.Person;
+import com.ederrafo.service.PersonService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/person")
+@RequestMapping("/persons")
 public class PersonController {
 
     public static final String TEMPLATE_PEOPLES = "peoples";
@@ -28,10 +29,15 @@ public class PersonController {
     @Qualifier("logComponent")
     private LogComponent logComponent;
 
+    // Inyectamos el servicio
+    @Autowired
+    @Qualifier("personServiceImpl")
+    private PersonService personService;
+
     @GetMapping("/")
     public ModelAndView peoples(){
         ModelAndView model = new ModelAndView(TEMPLATE_PEOPLES);
-        model.addObject("peoples",  getPeoples());
+        model.addObject("peoples", personService.getAllPerson());
         //logComponent.info();
         /*
         String nameofCurrMethod = new Throwable()
@@ -45,16 +51,7 @@ public class PersonController {
         return model;
     }
 
-    private List<Person> getPeoples(){
-        List<Person> peoples = new ArrayList<>();
-        peoples.add(new Person("Eder", 34));
-        peoples.add(new Person("Rafo", 33));
-        peoples.add(new Person("Oliver", 43));
-        peoples.add(new Person("Ana", 24));
 
-        return peoples;
-
-    }
 
     @GetMapping("/add")
     public String add(Model model)
