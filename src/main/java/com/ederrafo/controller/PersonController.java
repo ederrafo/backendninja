@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,20 +62,22 @@ public class PersonController {
         model.addAttribute("person", new Person());
 
         // test log trace
-//        LOGGER.info("Info trace");
-//        LOGGER.warn("Warning trace");
-//        LOGGER.error("Error trace");
-//        LOGGER.debug("Debug trace");
         return "person-add";
     }
 
     @PostMapping("/save")
-    //capturamos el objeto person
-    public ModelAndView save(@ModelAttribute("person") Person person){
-//        LOGGER.info("Method: 'Person save' --params: '" + person + "'");
-        ModelAndView modelAndView = new ModelAndView("person-save");
+    // Este objeto va a permitir una validacion de spring por eso lo anotamos con @Valid
+    public ModelAndView save(@Valid @ModelAttribute("person") Person person, BindingResult bindingResult){
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        if (bindingResult.hasErrors()){
+            modelAndView.setViewName("person-add");
+            return modelAndView;
+        }
+
+        modelAndView.setViewName("person-saved");
         modelAndView.addObject("person", person);
-//        LOGGER.info("Template: 'person-save' --data: '" + person + "'");
 
         return modelAndView;
     }
