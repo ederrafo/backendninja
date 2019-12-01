@@ -27,12 +27,22 @@ spring:
       content-type: text/html
     enabled: true # enable MVC thymeleaf resolution
     encoding: utf-8 # Template encoding
-
-
-
-
-
-
+  # Nos permite conectarnos con una bd
+  datasource:
+    url: jdbc:mysql://192.168.33.13:3306/backendninja
+    username: root
+    password: Follow1ngcommand?.,!
+  jpa:
+    # mostramos las consulta/queries en pantalla
+    show-sql: true
+    hibernate:
+      # cuando arranquemos la app, jpa validara que las entities sean igual a las tablas de la bd
+      ddl-auto: update
+     # naming:
+     #   strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
 
 security:
   oauth2:
