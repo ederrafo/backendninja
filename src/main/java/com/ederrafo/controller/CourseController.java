@@ -4,6 +4,8 @@ package com.ederrafo.controller;
 import com.ederrafo.entity.Course;
 import com.ederrafo.service.CourseService;
 import com.ederrafo.service.CourseServiceImpl;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/courses")
 public class CourseController {
 
+    //Logging
+    private static final Log LOG = LogFactory.getLog(CourseController.class);
+
     @Autowired
     private CourseService courseService;
 
@@ -26,12 +31,16 @@ public class CourseController {
     public ModelAndView all() {
         ModelAndView modelAndView = new ModelAndView("courses/all");
         modelAndView.addObject("courses", courseService.all());
+        String nameofCurrentMethod = new Throwable().getStackTrace()[0].getMethodName();
+        LOG.info("Call " + nameofCurrentMethod);
         return modelAndView;
     }
 
     @GetMapping("/add")
     public String add(Model model)
     {
+        String nameofCurrentMethod = new Throwable().getStackTrace()[0].getMethodName();
+        LOG.info("Call " + nameofCurrentMethod);
         model.addAttribute("person", new Course());
 
         return "courses/add";
@@ -39,7 +48,9 @@ public class CourseController {
 
     @PostMapping("/store")
     public String store(@ModelAttribute("course") Course course) {
+        String nameofCurrentMethod = new Throwable().getStackTrace()[0].getMethodName();
+        LOG.info("Call " + nameofCurrentMethod + " Params :" + course.toString());
         courseService.store(course);
-        return  "";
+        return  "redirect:/courses/all";
     }
 }
