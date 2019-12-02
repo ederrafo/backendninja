@@ -13,7 +13,7 @@ public class CourseServiceImpl implements CourseService {
     private CourseRepository courseRepository;
 
     @Override
-    public List<Course> findAll() {
+    public List<Course> all() {
         return courseRepository.findAll();
     }
 
@@ -25,7 +25,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public int remove(int id) {
-        courseRepository.delete(id);
+        //courseRepository.delete(id);
         return 0;
     }
 

@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public interface CourseService {
 
-    List<Course> findAll();
+    List<Course> all();
     Course store(Course course);
     int remove(int id);
     Course update(Course course);
