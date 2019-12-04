@@ -41,7 +41,7 @@ public class CourseController {
     {
         String nameofCurrentMethod = new Throwable().getStackTrace()[0].getMethodName();
         LOG.info("Call " + nameofCurrentMethod);
-        model.addAttribute("person", new Course());
+        model.addAttribute("course", new Course());
 
         return "courses/add";
     }

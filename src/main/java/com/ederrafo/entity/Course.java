@@ -14,9 +14,13 @@ public class Course {
     @GeneratedValue
     @Column(name = "id")
     private int id;
+
     private String name;
+
     private String description;
+
     private BigDecimal price;
+
     private int hours;
 
     public Course() {
