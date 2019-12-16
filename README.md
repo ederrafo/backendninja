@@ -22,5 +22,12 @@ https://github.com/querydsl/querydsl/tree/master/querydsl-jpa
 
 
 
+#### 48 Preparar el proyecto backendininja
+* Limpiaremos todos los ejemplos para empezar la app.
+- **Tendremos solo 2 paquetes**
+    - Component: Aqui estara la clase RequestTimeInterceptorComponent
+    - Configuration: la clase WebMvcConfiguration donde activaremos la clase RequestTimeInterceptorComponent
+
+
 
 
